@@ -1,9 +1,8 @@
-package com.example.devlessons
+package com.example.devlessons.Controller
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.example.devlessons.R
 import com.example.jonnyb.swoosh.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
