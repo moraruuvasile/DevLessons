@@ -4,37 +4,40 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devlessons.Model.Category
 import com.example.devlessons.R
+import kotlinx.android.synthetic.main.main_list_item.view.*
 
-class MainRecyAdap(val context: Context, val categories: List<Category>, val itemClick: (Category) -> Unit) : RecyclerView.Adapter<MainRecyAdap.Holder>() {
+class MainRecyAdap(val listCategories: List<Category>, val itemClick: (Category) -> Unit)
+    : RecyclerView.Adapter<MainRecyAdap.ViewHolder>() {
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bindCategory(categories[position], context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.main_list_item, parent, false)
+        return ViewHolder(view, itemClick, parent.context)
     }
 
-    override fun getItemCount(): Int {
-        return categories.count()
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bindCategory(listCategories[position]/*, context*/)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(context)
-            .inflate(R.layout.main_list_item, parent, false)
-        return Holder(view, itemClick)
-    }
 
-    inner class Holder(itemView: View, val itemClick: (Category) -> Unit) : RecyclerView.ViewHolder(itemView) {
-        val categoryImage = itemView.findViewById<ImageView>(R.id.categoryImage)
-        val categoryName = itemView.findViewById<TextView>(R.id.categoryName)
+    override fun getItemCount() = listCategories.count()
 
-        fun bindCategory(category: Category, context: Context) {
-            val resourceId = context.resources.getIdentifier(category.image,
-                "drawable", context.packageName)
-            categoryImage?.setImageResource(resourceId)
-            categoryName?.text = category.title
+    inner class ViewHolder(
+        itemView: View,
+        val itemClick: (Category) -> Unit,
+        val context: Context) : RecyclerView.ViewHolder(itemView) {
+
+        fun bindCategory(category: Category) {
+            val resourceId = context.resources.getIdentifier(
+                category.image,
+                "drawable", context.packageName
+            )
+
+            itemView.categoryImage.setImageResource(resourceId)
+            itemView.categoryName.text = category.title
+
             itemView.setOnClickListener { itemClick(category) }
         }
     }
