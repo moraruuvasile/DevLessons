@@ -32,7 +32,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/navHeaderProf_Image"
         app:layout_constraintTop_toTopOf="@+id/navHeaderProf_Image"
-        tools:text="JonnyB" />
+        tools:text="VasileM" />
 
     <TextView
         android:id="@+id/navHeaderEmail"
@@ -42,7 +42,7 @@
         android:layout_marginTop="0dp"
         app:layout_constraintStart_toEndOf="@+id/navHeaderProf_Image"
         app:layout_constraintTop_toBottomOf="@+id/navHeaderName"
-        tools:text="jonny@devslopes.com" />
+        tools:text="test@test" />
 
     <Button
         android:id="@+id/navHeaderBtn_Login"
