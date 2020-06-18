@@ -139,6 +139,8 @@ class MainActivity : AppCompatActivity() {
         if (App.prefs.isLoggedIn) {
             // log out
             UserDataService.logout()
+            channelAdapter.notifyDataSetChanged()
+            messageAdapter.notifyDataSetChanged()
             navHeaderName.text = ""
             navHeaderEmail.text = ""
             navHeaderProf_Image.setImageResource(R.drawable.profiledefault)
